@@ -204,6 +204,9 @@
       margin-bottom: 0;
     }
 
+    /* Hide the apps grid — spotlight section is used instead */
+    #apps { display: none; }
+
     /* ─── APP CARDS ─── */
     .apps-grid {
       display: grid;
@@ -373,24 +376,37 @@
     .spotlight-actions { display: flex; gap: 0.75rem; flex-wrap: wrap; }
     .spotlight-visual {
       display: flex;
-      justify-content: center;
+      flex-direction: column;
       align-items: center;
-      position: relative;
+      gap: 2rem;
     }
-    .spotlight-screenshot {
-      max-width: 280px;
-      width: 100%;
-      filter: drop-shadow(0 30px 60px rgba(0,0,0,0.8));
-      border-radius: 4px;
+    .spotlight-icon-row {
+      display: flex;
+      align-items: center;
+      gap: 14px;
     }
-    .spotlight-screenshot-2 {
-      position: absolute;
-      max-width: 200px;
-      right: 0;
-      bottom: -20px;
-      filter: drop-shadow(0 20px 40px rgba(0,0,0,0.6));
-      opacity: 0.7;
-      border-radius: 4px;
+    .spotlight-icon-img {
+      width: 56px;
+      height: 56px;
+      border-radius: 13px;
+      box-shadow: 0 6px 20px rgba(56,178,232,0.25);
+    }
+    .spotlight-icon-label {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem;
+      font-weight: 700;
+    }
+    .spotlight-screens {
+      display: flex;
+      gap: 1.25rem;
+      align-items: flex-start;
+    }
+    .spotlight-screen {
+      width: 150px;
+      filter: drop-shadow(0 20px 40px rgba(0,0,0,0.65));
+    }
+    .spotlight-screen:nth-child(2) {
+      margin-top: 2.5rem;
     }
     @media (max-width: 860px) {
       .spotlight-inner { grid-template-columns: 1fr; gap: 3rem; }
@@ -692,18 +708,14 @@
         </div>
       </div>
       <div class="spotlight-visual">
-        <img
-          class="spotlight-screenshot"
-          src="images/03.png"
-          alt="WeightTrack progress chart"
-          loading="lazy"
-        >
-        <img
-          class="spotlight-screenshot-2"
-          src="images/04.png"
-          alt="WeightTrack add entry screen"
-          loading="lazy"
-        >
+        <div class="spotlight-icon-row">
+          <img src="images/180.png" alt="WeightTrack icon" class="spotlight-icon-img">
+          <span class="spotlight-icon-label">WeightTrack</span>
+        </div>
+        <div class="spotlight-screens">
+          <img src="images/03.png" alt="WeightTrack progress chart" class="spotlight-screen" loading="lazy">
+          <img src="images/04.png" alt="WeightTrack add entry" class="spotlight-screen" loading="lazy">
+        </div>
       </div>
     </div>
   </section>
