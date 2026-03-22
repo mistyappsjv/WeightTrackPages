@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WeightTrack Support – Misty Apps</title>
+  <meta name="description" content="Get help with WeightTrack — FAQs, tips, and contact support.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Source+Sans+Pro:wght@300;400;700&family=Montserrat:wght@600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --gold: #35B0E0;
+      --gold-light: #70D4F5;
+      --gold-dark: #1A88BC;
+      --bg: #06090F;
+      --bg-alt: #0B1020;
+      --bg-card: #0D1525;
+      --text: #ffffff;
+      --text-muted: #e2e2e2;
+      --text-subtle: #969696;
+      --border: rgba(56,178,232,0.12);
+      --border-gold: rgba(56,178,232,0.28);
+    }
+
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Source Sans Pro', 'Helvetica Neue', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ─── HEADER ─── */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(0,0,0,0.96);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+    .header-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      display: flex;
+      align-items: center;
+      height: 72px;
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      text-decoration: none;
+      color: var(--text);
+    }
+    .logo-text {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: 1.05rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+    }
+    nav {
+      margin-left: auto;
+      display: flex;
+      gap: 2.5rem;
+      align-items: center;
+    }
+    nav a {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 600;
+      font-size: 0.72rem;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    nav a:hover, nav a.active { color: var(--gold); }
+
+    /* ─── PAGE HERO ─── */
+    .page-hero {
+      padding: 5rem 2rem 4rem;
+      text-align: center;
+      background:
+        radial-gradient(ellipse 80% 60% at 50% 20%, rgba(6,20,50,0.75) 0%, transparent 70%),
+        #000;
+      position: relative;
+      overflow: hidden;
+    }
+    .page-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.012) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.012) 1px, transparent 1px);
+      background-size: 60px 60px;
+    }
+    .page-hero-content { position: relative; }
+    .app-hero-icon {
+      width: 96px;
+      height: 96px;
+      background: linear-gradient(135deg, #071836, #0B1F40);
+      border-radius: 22px;
+      border: 1px solid var(--border-gold);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 2rem;
+      box-shadow: 0 8px 40px rgba(56,178,232,0.12);
+      overflow: hidden;
+      padding: 0;
+    }
+    .eyebrow {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 600;
+      font-size: 0.7rem;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1rem;
+    }
+    .page-hero h1 {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: clamp(2.2rem, 5vw, 3.5rem);
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+    .gold-line {
+      width: 56px;
+      height: 3px;
+      background: linear-gradient(90deg, var(--gold-dark), var(--gold-light));
+      margin: 1.5rem auto;
+      border-radius: 2px;
+    }
+    .page-hero p {
+      font-size: 1.1rem;
+      color: var(--text-muted);
+      max-width: 520px;
+      margin: 0 auto;
+    }
+
+    /* ─── SECTIONS ─── */
+    .section { padding: 5rem 2rem; }
+    .section-alt { background: var(--bg-alt); }
+    .section-inner { max-width: 860px; margin: 0 auto; }
+    .section-inner-wide { max-width: 1100px; margin: 0 auto; }
+    .section-title {
+      text-align: center;
+      margin-bottom: 3.5rem;
+    }
+    .section-title h2 {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: clamp(1.6rem, 3vw, 2.4rem);
+      font-weight: 700;
+    }
+
+    /* ─── FAQ ─── */
+    .faq-list { display: flex; flex-direction: column; gap: 1px; }
+    .faq-item {
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+      margin-bottom: 0.75rem;
+      background: var(--bg-card);
+      transition: border-color 0.3s;
+    }
+    .faq-item:focus-within { border-color: var(--border-gold); }
+    .faq-question {
+      width: 100%;
+      background: none;
+      border: none;
+      color: var(--text);
+      font-family: 'Source Sans Pro', sans-serif;
+      font-weight: 700;
+      font-size: 1.05rem;
+      text-align: left;
+      padding: 1.4rem 1.75rem;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      transition: color 0.3s;
+    }
+    .faq-question:hover { color: var(--gold); }
+    .faq-icon {
+      flex-shrink: 0;
+      width: 24px;
+      height: 24px;
+      border: 1px solid var(--border-gold);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--gold);
+      font-size: 1rem;
+      transition: transform 0.3s, background 0.3s;
+    }
+    .faq-item.open .faq-icon {
+      transform: rotate(45deg);
+      background: rgba(56,178,232,0.1);
+    }
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease, padding 0.3s ease;
+    }
+    .faq-answer-inner {
+      padding: 0 1.75rem 1.5rem;
+      color: var(--text-subtle);
+      font-size: 0.97rem;
+      line-height: 1.75;
+    }
+    .faq-item.open .faq-answer { max-height: 500px; }
+
+    /* ─── TIPS GRID ─── */
+    .tips-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.5rem;
+    }
+    .tip-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 2rem;
+      transition: border-color 0.3s, transform 0.3s;
+    }
+    .tip-card:hover {
+      border-color: var(--border-gold);
+      transform: translateY(-3px);
+    }
+    .tip-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--gold);
+      opacity: 0.5;
+      margin-bottom: 0.75rem;
+      line-height: 1;
+    }
+    .tip-card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+      margin-bottom: 0.5rem;
+    }
+    .tip-card p { color: var(--text-subtle); font-size: 0.92rem; }
+
+    /* ─── CONTACT STRIP ─── */
+    .contact-strip {
+      text-align: center;
+      padding: 5rem 2rem;
+      background: radial-gradient(ellipse 70% 60% at 50% 50%, rgba(6,20,50,0.7) 0%, transparent 70%), var(--bg);
+    }
+    .contact-strip h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 3vw, 2.5rem);
+      margin-bottom: 1rem;
+    }
+    .contact-strip p {
+      color: var(--text-muted);
+      max-width: 480px;
+      margin: 0 auto 2.5rem;
+    }
+
+    /* ─── BUTTONS ─── */
+    .btn {
+      display: inline-block;
+      padding: 0.85rem 2.2rem;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: 0.72rem;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      text-decoration: none;
+      border-radius: 3px;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      border: none;
+    }
+    .btn-gold {
+      background: linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 50%, var(--gold) 100%);
+      background-size: 200% auto;
+      color: #ffffff;
+    }
+    .btn-gold:hover {
+      background-position: right center;
+      box-shadow: 0 4px 24px rgba(56,178,232,0.3);
+    }
+    .btn-outline {
+      background: transparent;
+      color: var(--gold);
+      border: 1px solid var(--border-gold);
+    }
+    .btn-outline:hover {
+      background: rgba(56,178,232,0.08);
+      border-color: var(--gold);
+    }
+
+    /* ─── FOOTER ─── */
+    footer {
+      background: #040710;
+      border-top: 1px solid var(--border);
+      padding: 3rem 2rem;
+      text-align: center;
+    }
+    .footer-logo {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      margin-bottom: 1.5rem;
+      text-decoration: none;
+      color: var(--text);
+    }
+    .footer-logo-text {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: 0.9rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+    }
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      margin-bottom: 1.5rem;
+      flex-wrap: wrap;
+    }
+    .footer-links a {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--text-subtle);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    .footer-links a:hover { color: var(--gold); }
+    footer p { color: #444; font-size: 0.82rem; }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 768px) {
+      nav { gap: 1.5rem; }
+      .logo-text { display: none; }
+    }
+    @media (max-width: 480px) {
+      .header-inner { padding: 0 1.25rem; }
+      nav { gap: 1rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <div class="header-inner">
+      <a href="index.html" class="logo">
+        <svg width="44" height="44" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Misty Apps Logo">
+          <defs>
+            <linearGradient id="goldFillS" x1="0" y1="0" x2="44" y2="44" gradientUnits="userSpaceOnUse">
+              <stop offset="0%" stop-color="#F5E070"/>
+              <stop offset="50%" stop-color="#D4AF37"/>
+              <stop offset="100%" stop-color="#8B6914"/>
+            </linearGradient>
+          </defs>
+          <circle cx="22" cy="22" r="21" fill="url(#goldFillS)"/>
+          <text x="22" y="29" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-weight="bold" font-size="15" letter-spacing="1" fill="#1a0f00">MA</text>
+        </svg>
+        <span class="logo-text">Misty Apps</span>
+      </a>
+      <nav>
+        <a href="index.html">Home</a>
+        <a href="weighttrack.html">WeightTrack</a>
+        <a href="support.html" class="active">Support</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- PAGE HERO -->
+  <section class="page-hero">
+    <div class="page-hero-content">
+      <div class="app-hero-icon">
+        <img src="images/180.png" alt="WeightTrack" style="width:100%;height:100%;display:block;object-fit:cover;">
+      </div>
+      <p class="eyebrow">WeightTrack</p>
+      <h1>Support Center</h1>
+      <div class="gold-line"></div>
+      <p>Find answers to common questions and get the most out of WeightTrack.</p>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section">
+    <div class="section-inner">
+      <div class="section-title">
+        <p class="eyebrow">Help</p>
+        <h2>Frequently Asked Questions</h2>
+        <div class="gold-line"></div>
+      </div>
+      <div class="faq-list">
+
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFAQ(this)">
+            How do I log my weight?
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">
+              Open WeightTrack and tap the <strong>+</strong> button on the main screen. Enter your current weight, select your preferred unit (lbs or kg), and tap Save. Your entry will immediately appear in your history and charts.
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFAQ(this)">
+            Can I change between pounds and kilograms?
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">
+              Yes. Go to <strong>Settings</strong> and select your preferred unit. WeightTrack will automatically convert all existing entries to your chosen unit so your history stays consistent.
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFAQ(this)">
+            Is my data stored securely?
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">
+              Your data is stored locally on your device. We take your privacy seriously — please review our <a href="privacy-policy.html" style="color: var(--gold);">Privacy Policy</a> for full details on how your information is handled.
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFAQ(this)">
+            How do I set a goal weight?
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">
+              Navigate to <strong>Settings &rarr; Goals</strong> and enter your target weight. WeightTrack will display your progress toward that goal on the main dashboard and in your charts.
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFAQ(this)">
+            Can I edit or delete a past entry?
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">
+              Yes. Open the <strong>History</strong> tab, find the entry you want to change, and swipe left to reveal Edit or Delete options. Changes are reflected immediately in your charts and statistics.
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFAQ(this)">
+            How do I back up or export my data?
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">
+              Go to <strong>Settings &rarr; Export Data</strong> to download your complete history as a CSV file. You can also enable iCloud backup through your device's iCloud settings to keep your data safe.
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFAQ(this)">
+            WeightTrack won't open — what should I do?
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">
+              Try force-quitting the app and reopening it. If the issue persists, ensure you're running the latest version from the App Store. For persistent problems, please <a href="contact.html" style="color: var(--gold);">contact us</a> and we'll be happy to help.
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- TIPS -->
+  <section class="section section-alt">
+    <div class="section-inner-wide">
+      <div class="section-title">
+        <p class="eyebrow">Tips</p>
+        <h2>Getting the Most from WeightTrack</h2>
+        <div class="gold-line"></div>
+      </div>
+      <div class="tips-grid">
+        <div class="tip-card">
+          <div class="tip-num">01</div>
+          <h3>Weigh at the same time</h3>
+          <p>For the most accurate trends, weigh yourself at the same time each day — first thing in the morning works best.</p>
+        </div>
+        <div class="tip-card">
+          <div class="tip-num">02</div>
+          <h3>Log consistently</h3>
+          <p>Daily logging gives you the clearest picture of your progress. Even a plateau is useful data.</p>
+        </div>
+        <div class="tip-card">
+          <div class="tip-num">03</div>
+          <h3>Focus on the trend</h3>
+          <p>Day-to-day fluctuations are normal. Use the weekly and monthly chart views to see your real progress.</p>
+        </div>
+        <div class="tip-card">
+          <div class="tip-num">04</div>
+          <h3>Set a realistic goal</h3>
+          <p>Set a goal weight and let WeightTrack show your progress bar — small milestones keep you motivated.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT STRIP -->
+  <div class="contact-strip">
+    <h2>Still need help?</h2>
+    <p>Can't find what you're looking for? We're happy to assist — reach out and we'll get back to you promptly.</p>
+    <a href="contact.html" class="btn btn-gold">Contact Us</a>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <a href="index.html" class="footer-logo">
+      <svg width="36" height="36" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="goldFillSF" x1="0" y1="0" x2="44" y2="44" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stop-color="#F5E070"/>
+            <stop offset="50%" stop-color="#D4AF37"/>
+            <stop offset="100%" stop-color="#8B6914"/>
+          </linearGradient>
+        </defs>
+        <circle cx="22" cy="22" r="21" fill="url(#goldFillSF)"/>
+        <text x="22" y="29" text-anchor="middle" font-family="Georgia, serif" font-weight="bold" font-size="15" letter-spacing="1" fill="#1a0f00">MA</text>
+      </svg>
+      <span class="footer-logo-text">Misty Apps</span>
+    </a>
+    <div class="footer-links">
+      <a href="index.html">Home</a>
+      <a href="weighttrack.html">WeightTrack</a>
+      <a href="support.html">Support</a>
+      <a href="contact.html">Contact</a>
+      <a href="privacy-policy.html">Privacy Policy</a>
+    </div>
+    <p>Copyright &copy; 2026 Misty Apps &mdash; All Rights Reserved</p>
+  </footer>
+
+  <script>
+    function toggleFAQ(btn) {
+      const item = btn.closest('.faq-item');
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item.open').forEach(el => el.classList.remove('open'));
+      if (!isOpen) item.classList.add('open');
+    }
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,950 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WeightTrack – Simple Weight Tracking with Style</title>
+  <meta name="description" content="WeightTrack: the beautiful, simple weight tracker for iPhone. BMI, goal weight, Apple Health sync, iCloud, dark mode and more.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Source+Sans+Pro:wght@300;400;700&family=Montserrat:wght@600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --gold: #35B0E0;
+      --gold-light: #70D4F5;
+      --gold-dark: #1A88BC;
+      --blue: #4A9FDB;
+      --blue-light: #6EC6F5;
+      --bg: #06090F;
+      --bg-alt: #0B1020;
+      --bg-card: #0D1525;
+      --text: #ffffff;
+      --text-muted: #e2e2e2;
+      --text-subtle: #969696;
+      --border: rgba(56,178,232,0.12);
+      --border-gold: rgba(56,178,232,0.28);
+      --screens: "images/";
+    }
+
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Source Sans Pro', 'Helvetica Neue', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ─── HEADER ─── */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(0,0,0,0.96);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+    .header-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      display: flex;
+      align-items: center;
+      height: 72px;
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      text-decoration: none;
+      color: var(--text);
+    }
+    .logo-text {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: 1.05rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+    }
+    nav {
+      margin-left: auto;
+      display: flex;
+      gap: 2.5rem;
+      align-items: center;
+    }
+    nav a {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 600;
+      font-size: 0.72rem;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    nav a:hover, nav a.active { color: var(--gold); }
+
+    /* ─── HERO ─── */
+    .hero {
+      min-height: 90vh;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      position: relative;
+      background:
+        radial-gradient(ellipse 70% 80% at 20% 50%, rgba(6,20,50,0.9) 0%, transparent 60%),
+        radial-gradient(ellipse 60% 70% at 80% 30%, rgba(6,20,50,0.6) 0%, transparent 60%),
+        #000;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.012) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.012) 1px, transparent 1px);
+      background-size: 60px 60px;
+    }
+    .hero-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 6rem 2rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+      position: relative;
+      width: 100%;
+    }
+    .hero-text { max-width: 540px; }
+    .eyebrow {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 600;
+      font-size: 0.7rem;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1.25rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .eyebrow::before {
+      content: '';
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--gold);
+      border-radius: 2px;
+    }
+    .hero h1 {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: clamp(2.8rem, 5vw, 4rem);
+      font-weight: 700;
+      line-height: 1.15;
+      margin-bottom: 1.5rem;
+    }
+    .hero h1 em {
+      font-style: normal;
+      color: var(--gold);
+    }
+    .gold-line {
+      width: 56px;
+      height: 3px;
+      background: linear-gradient(90deg, var(--gold-dark), var(--gold-light));
+      margin-bottom: 1.75rem;
+      border-radius: 2px;
+    }
+    .hero p {
+      font-size: 1.1rem;
+      color: var(--text-muted);
+      margin-bottom: 2.5rem;
+      max-width: 440px;
+    }
+    .hero-actions {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    /* App Store button */
+    .appstore-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: #fff;
+      color: #000;
+      padding: 0.7rem 1.4rem;
+      border-radius: 10px;
+      text-decoration: none;
+      transition: all 0.3s;
+    }
+    .appstore-btn:hover { opacity: 0.88; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(56,178,232,0.20); }
+    .appstore-btn-text { display: flex; flex-direction: column; }
+    .appstore-btn-text small {
+      font-family: 'Source Sans Pro', sans-serif;
+      font-size: 0.62rem;
+      font-weight: 400;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      line-height: 1;
+    }
+    .appstore-btn-text span {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: 0.95rem;
+      line-height: 1.3;
+    }
+    .scroll-link {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 600;
+      font-size: 0.72rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--gold);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: gap 0.3s;
+    }
+    .scroll-link:hover { gap: 12px; }
+
+    /* Hero screenshot */
+    .hero-visual {
+      display: flex;
+      justify-content: center;
+      align-items: flex-end;
+      position: relative;
+    }
+    .hero-screenshot {
+      max-width: 320px;
+      width: 100%;
+      filter: drop-shadow(0 40px 80px rgba(0,0,0,0.8));
+      animation: float 5s ease-in-out infinite;
+    }
+    .hero-screenshot-back {
+      position: absolute;
+      max-width: 240px;
+      width: 80%;
+      right: 5%;
+      bottom: 0;
+      filter: drop-shadow(0 20px 40px rgba(0,0,0,0.6));
+      opacity: 0.6;
+      animation: float 5s ease-in-out infinite 1.5s;
+    }
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-14px); }
+    }
+
+    /* ─── STATS BAR ─── */
+    .stats-bar {
+      background: var(--bg-alt);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+    .stats-inner {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      display: flex;
+      justify-content: space-around;
+      align-items: stretch;
+    }
+    .stat-item {
+      padding: 1.75rem 1rem;
+      text-align: center;
+      flex: 1;
+      border-right: 1px solid var(--border);
+    }
+    .stat-item:last-child { border-right: none; }
+    .stat-value {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--gold);
+      line-height: 1;
+      margin-bottom: 0.3rem;
+    }
+    .stat-label {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--text-subtle);
+    }
+
+    /* ─── SECTION SHARED ─── */
+    .section { padding: 6rem 2rem; }
+    .section-alt { background: var(--bg-alt); }
+    .section-inner { max-width: 1200px; margin: 0 auto; }
+    .section-title { text-align: center; margin-bottom: 4rem; }
+    .section-title h2 {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: clamp(1.8rem, 3vw, 2.8rem);
+      font-weight: 700;
+    }
+    .section-title p { color: var(--text-subtle); max-width: 560px; margin: 1rem auto 0; }
+
+    /* ─── FEATURE ROWS ─── */
+    .feature-row {
+      padding: 5rem 2rem;
+    }
+    .feature-row-alt { background: var(--bg-alt); }
+    .feature-row-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+    }
+    .feature-row-inner.reverse { direction: rtl; }
+    .feature-row-inner.reverse > * { direction: ltr; }
+
+    .feature-text .eyebrow { margin-bottom: 1rem; }
+    .feature-text h2 {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: clamp(1.7rem, 3vw, 2.4rem);
+      font-weight: 700;
+      margin-bottom: 1rem;
+      line-height: 1.25;
+    }
+    .feature-text p {
+      color: var(--text-muted);
+      font-size: 1.05rem;
+      margin-bottom: 1.5rem;
+    }
+    .feature-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+    .feature-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      color: var(--text-muted);
+      font-size: 0.97rem;
+    }
+    .feature-list li::before {
+      content: '';
+      display: block;
+      width: 18px;
+      height: 18px;
+      flex-shrink: 0;
+      margin-top: 3px;
+      background: url("data:image/svg+xml,%3Csvg viewBox='0 0 18 18' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='9' cy='9' r='8.5' stroke='%2335B0E0' stroke-opacity='0.5'/%3E%3Cpath d='M5.5 9L8 11.5L12.5 7' stroke='%2335B0E0' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/contain no-repeat;
+    }
+
+    .feature-screenshot {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .feature-screenshot img {
+      max-width: 300px;
+      width: 100%;
+      filter: drop-shadow(0 30px 60px rgba(0,0,0,0.7));
+      border-radius: 4px;
+      transition: transform 0.4s ease;
+    }
+    .feature-screenshot img:hover { transform: scale(1.03) translateY(-4px); }
+
+    /* ─── FEATURE GRID ─── */
+    .features-grid-inner {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+    .feature-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 2rem;
+      transition: border-color 0.3s, transform 0.3s;
+    }
+    .feature-card:hover {
+      border-color: var(--border-gold);
+      transform: translateY(-4px);
+    }
+    .feature-card-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, #071836, #0B1F40);
+      border: 1px solid var(--border-gold);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.25rem;
+      color: var(--gold);
+    }
+    .feature-card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+      margin-bottom: 0.5rem;
+    }
+    .feature-card p { color: var(--text-subtle); font-size: 0.9rem; line-height: 1.6; }
+
+    /* ─── SCREENSHOT GALLERY ─── */
+    .gallery-section { padding: 5rem 0; overflow: hidden; }
+    .gallery-title { text-align: center; margin-bottom: 3rem; padding: 0 2rem; }
+    .gallery-title .eyebrow { justify-content: center; margin-bottom: 0.75rem; }
+    .gallery-title h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.6rem, 3vw, 2.4rem);
+      font-weight: 700;
+    }
+    .gallery-track {
+      display: flex;
+      gap: 1.5rem;
+      padding: 1rem 2rem 2rem;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: thin;
+      scrollbar-color: rgba(56,178,232,0.3) transparent;
+    }
+    .gallery-track::-webkit-scrollbar { height: 4px; }
+    .gallery-track::-webkit-scrollbar-track { background: transparent; }
+    .gallery-track::-webkit-scrollbar-thumb { background: rgba(56,178,232,0.3); border-radius: 2px; }
+    .gallery-item {
+      flex-shrink: 0;
+      scroll-snap-align: start;
+      width: 220px;
+    }
+    .gallery-item img {
+      width: 100%;
+      border-radius: 8px;
+      filter: drop-shadow(0 16px 40px rgba(0,0,0,0.6));
+      transition: transform 0.3s, filter 0.3s;
+    }
+    .gallery-item img:hover {
+      transform: scale(1.04) translateY(-4px);
+      filter: drop-shadow(0 24px 50px rgba(0,0,0,0.7));
+    }
+
+    /* ─── CTA SECTION ─── */
+    .cta-section {
+      padding: 7rem 2rem;
+      text-align: center;
+      background:
+        radial-gradient(ellipse 80% 70% at 50% 50%, rgba(6,20,50,0.8) 0%, transparent 70%),
+        var(--bg);
+      position: relative;
+      overflow: hidden;
+    }
+    .cta-section::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.012) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.012) 1px, transparent 1px);
+      background-size: 60px 60px;
+    }
+    .cta-inner { position: relative; max-width: 600px; margin: 0 auto; }
+    .cta-app-icon {
+      width: 88px;
+      height: 88px;
+      background: linear-gradient(135deg, #071836, #0B1F40);
+      border-radius: 20px;
+      border: 1px solid var(--border-gold);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 2rem;
+      box-shadow: 0 8px 40px rgba(56,178,232,0.15);
+      overflow: hidden;
+      padding: 0;
+    }
+    .cta-section h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+    .cta-section p {
+      color: var(--text-muted);
+      font-size: 1.1rem;
+      margin-bottom: 2.5rem;
+    }
+    .cta-actions {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    /* ─── BUTTONS ─── */
+    .btn {
+      display: inline-block;
+      padding: 0.85rem 2.2rem;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: 0.72rem;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      text-decoration: none;
+      border-radius: 3px;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      border: none;
+    }
+    .btn-gold {
+      background: linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 50%, var(--gold) 100%);
+      background-size: 200% auto;
+      color: #ffffff;
+    }
+    .btn-gold:hover { background-position: right center; box-shadow: 0 4px 24px rgba(56,178,232,0.3); }
+    .btn-outline {
+      background: transparent;
+      color: var(--gold);
+      border: 1px solid var(--border-gold);
+    }
+    .btn-outline:hover { background: rgba(56,178,232,0.08); border-color: var(--gold); }
+
+    /* ─── FOOTER ─── */
+    footer {
+      background: #040710;
+      border-top: 1px solid var(--border);
+      padding: 3rem 2rem;
+      text-align: center;
+    }
+    .footer-logo {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      margin-bottom: 1.5rem;
+      text-decoration: none;
+      color: var(--text);
+    }
+    .footer-logo-text {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: 0.9rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+    }
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      margin-bottom: 1.5rem;
+      flex-wrap: wrap;
+    }
+    .footer-links a {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--text-subtle);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    .footer-links a:hover { color: var(--gold); }
+    footer p { color: #444; font-size: 0.82rem; }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 900px) {
+      .hero-inner { grid-template-columns: 1fr; text-align: center; }
+      .hero-text { max-width: 100%; }
+      .hero-text .eyebrow { justify-content: center; }
+      .hero-text .gold-line { margin-left: auto; margin-right: auto; }
+      .hero p { max-width: 100%; }
+      .hero-actions { justify-content: center; }
+      .hero-visual { margin-top: 2rem; }
+      .hero-screenshot-back { display: none; }
+      .feature-row-inner { grid-template-columns: 1fr; gap: 3rem; }
+      .feature-row-inner.reverse { direction: ltr; }
+      .feature-screenshot { order: -1; }
+      .features-grid-inner { grid-template-columns: repeat(2, 1fr); }
+      .stats-inner { flex-wrap: wrap; }
+      .stat-item { flex: 1 1 50%; border-bottom: 1px solid var(--border); }
+    }
+    @media (max-width: 640px) {
+      .features-grid-inner { grid-template-columns: 1fr; }
+      .stat-item { flex: 1 1 100%; }
+    }
+    @media (max-width: 768px) {
+      nav { gap: 1.5rem; }
+      .logo-text { display: none; }
+    }
+    @media (max-width: 480px) {
+      .header-inner { padding: 0 1.25rem; }
+      nav { gap: 1rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <div class="header-inner">
+      <a href="index.html" class="logo">
+        <svg width="44" height="44" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Misty Apps Logo">
+          <defs>
+            <linearGradient id="goldFillWT" x1="0" y1="0" x2="44" y2="44" gradientUnits="userSpaceOnUse">
+              <stop offset="0%" stop-color="#F5E070"/>
+              <stop offset="50%" stop-color="#D4AF37"/>
+              <stop offset="100%" stop-color="#8B6914"/>
+            </linearGradient>
+          </defs>
+          <circle cx="22" cy="22" r="21" fill="url(#goldFillWT)"/>
+          <text x="22" y="29" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-weight="bold" font-size="15" letter-spacing="1" fill="#1a0f00">MA</text>
+        </svg>
+        <span class="logo-text">Misty Apps</span>
+      </a>
+      <nav>
+        <a href="index.html">Home</a>
+        <a href="weighttrack.html" class="active">WeightTrack</a>
+        <a href="support.html">Support</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-inner">
+      <div class="hero-text">
+        <p class="eyebrow">WeightTrack for iPhone</p>
+        <h1>Simple weight tracking, <em>with style.</em></h1>
+        <div class="gold-line"></div>
+        <p>Log your weight, track your BMI, set a goal, and visualise your journey with beautiful charts — all in a clean, fast, no-fuss app.</p>
+        <div class="hero-actions">
+          <!-- Replace href="#" with your App Store URL -->
+          <a href="#" class="appstore-btn" aria-label="Download WeightTrack on the App Store">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+            <span class="appstore-btn-text">
+              <small>Download on the</small>
+              <span>App Store</span>
+            </span>
+          </a>
+          <a href="#features" class="scroll-link">
+            See features
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M7 2v10M2 7l5 5 5-5"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <img
+          class="hero-screenshot"
+          src="images/09.png"
+          alt="WeightTrack main dashboard on iPhone"
+          loading="eager"
+        >
+        <img
+          class="hero-screenshot-back"
+          src="images/03.png"
+          alt="WeightTrack history chart on iPhone"
+          loading="eager"
+        >
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS BAR -->
+  <div class="stats-bar">
+    <div class="stats-inner">
+      <div class="stat-item">
+        <div class="stat-value">Free</div>
+        <div class="stat-label">On the App Store</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-value">iOS 15+</div>
+        <div class="stat-label">Compatible</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-value">lbs &amp; kg</div>
+        <div class="stat-label">Your units</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-value">Dark &amp; Light</div>
+        <div class="stat-label">Themes</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-value">Private</div>
+        <div class="stat-label">No ads, no tracking</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FEATURE 1: Progress Charts -->
+  <section class="feature-row" id="features">
+    <div class="feature-row-inner">
+      <div class="feature-text">
+        <p class="eyebrow">Progress</p>
+        <h2>See your full journey at a glance.</h2>
+        <p>A beautiful interactive chart shows your weight history over days, weeks, months, or your entire lifetime — with your goal line always in view.</p>
+        <ul class="feature-list">
+          <li>Long-range history chart with scrollable timeline</li>
+          <li>Goal weight line displayed directly on the chart</li>
+          <li>Daily change indicators — instantly spot trends</li>
+          <li>BMI displayed alongside every entry</li>
+        </ul>
+      </div>
+      <div class="feature-screenshot">
+        <img
+          src="images/03.png"
+          alt="WeightTrack history chart"
+          loading="lazy"
+        >
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURE 2: Quick Logging -->
+  <section class="feature-row feature-row-alt">
+    <div class="feature-row-inner reverse">
+      <div class="feature-text">
+        <p class="eyebrow">Logging</p>
+        <h2>Add an entry in seconds.</h2>
+        <p>The quick-entry interface is designed for speed — tap the date, adjust your weight with the stepper or type it in, add an optional note, and you're done.</p>
+        <ul class="feature-list">
+          <li>Tap +/- stepper or type your weight directly</li>
+          <li>Optional notes for each entry (mood, meals, etc.)</li>
+          <li>Edit or delete any past entry at any time</li>
+          <li>Supports dates in the past for catch-up entries</li>
+        </ul>
+      </div>
+      <div class="feature-screenshot">
+        <img
+          src="images/04.png"
+          alt="WeightTrack add entry screen"
+          loading="lazy"
+        >
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURE 3: Personalised -->
+  <section class="feature-row">
+    <div class="feature-row-inner">
+      <div class="feature-text">
+        <p class="eyebrow">Personalisation</p>
+        <h2>Built around your profile.</h2>
+        <p>Set up your gender, age, height and goal weight so WeightTrack can calculate your BMI accurately and show you meaningful progress toward your target.</p>
+        <ul class="feature-list">
+          <li>Accurate BMI calculated from your profile</li>
+          <li>Goal weight progress shown on dashboard &amp; chart</li>
+          <li>Toggle daily change, BMI, and goal displays on or off</li>
+          <li>Switch between Metric and Imperial at any time</li>
+        </ul>
+      </div>
+      <div class="feature-screenshot">
+        <img
+          src="images/05.png"
+          alt="WeightTrack settings and BMI"
+          loading="lazy"
+        >
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURE 4: Apple Ecosystem -->
+  <section class="feature-row feature-row-alt">
+    <div class="feature-row-inner reverse">
+      <div class="feature-text">
+        <p class="eyebrow">Connectivity</p>
+        <h2>Connected to your Apple ecosystem.</h2>
+        <p>WeightTrack plays nicely with the tools you already use — sync weight entries to Apple Health, back up with iCloud, or move your data in and out with CSV.</p>
+        <ul class="feature-list">
+          <li>Write weight entries to Apple Health automatically</li>
+          <li>iCloud sync to keep all your devices up to date</li>
+          <li>Export your full history as a CSV file</li>
+          <li>Import pre-existing weight data from a CSV</li>
+        </ul>
+      </div>
+      <div class="feature-screenshot">
+        <img
+          src="images/06.png"
+          alt="WeightTrack Apple Health and iCloud settings"
+          loading="lazy"
+        >
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURE GRID -->
+  <section class="section">
+    <div class="section-inner">
+      <div class="section-title">
+        <p class="eyebrow" style="justify-content:center;">Everything you need</p>
+        <h2>Packed with thoughtful features.</h2>
+        <div class="gold-line" style="margin: 1.5rem auto 0;"></div>
+      </div>
+      <div class="features-grid-inner">
+
+        <div class="feature-card">
+          <div class="feature-card-icon">
+            <!-- BMI icon -->
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/>
+              <path d="M12 8v4l3 3"/>
+            </svg>
+          </div>
+          <h3>BMI Calculator</h3>
+          <p>Automatically calculated from your profile — displayed on every entry and the dashboard.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-card-icon">
+            <!-- Goal icon -->
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"/>
+              <circle cx="12" cy="12" r="6"/>
+              <circle cx="12" cy="12" r="2"/>
+            </svg>
+          </div>
+          <h3>Goal Weight</h3>
+          <p>Set a target weight and track your distance from it on the dashboard and in your history chart.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-card-icon">
+            <!-- Theme icon -->
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+            </svg>
+          </div>
+          <h3>Light &amp; Dark Theme</h3>
+          <p>A sleek dark mode and a crisp light mode — choose the one that suits you, or let iOS decide.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-card-icon">
+            <!-- Units icon -->
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M3 6h18M3 12h18M3 18h18"/>
+              <circle cx="7" cy="6" r="2" fill="currentColor" stroke="none" opacity="0.5"/>
+              <circle cx="17" cy="12" r="2" fill="currentColor" stroke="none" opacity="0.5"/>
+              <circle cx="10" cy="18" r="2" fill="currentColor" stroke="none" opacity="0.5"/>
+            </svg>
+          </div>
+          <h3>Metric &amp; Imperial</h3>
+          <p>Switch between kilograms and pounds at any time — all existing entries convert automatically.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-card-icon">
+            <!-- Export icon -->
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+              <polyline points="17 8 12 3 7 8"/>
+              <line x1="12" y1="3" x2="12" y2="15"/>
+            </svg>
+          </div>
+          <h3>CSV Import &amp; Export</h3>
+          <p>Export your full history to CSV or import from another app — your data, always yours to keep.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-card-icon">
+            <!-- Apple Health icon -->
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+            </svg>
+          </div>
+          <h3>Apple Health &amp; iCloud</h3>
+          <p>Sync weight data to Apple Health and use iCloud to keep all your devices in perfect harmony.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- SCREENSHOT GALLERY -->
+  <section class="gallery-section section-alt">
+    <div class="gallery-title">
+      <p class="eyebrow">Gallery</p>
+      <h2>See every screen.</h2>
+    </div>
+    <div class="gallery-track">
+      <div class="gallery-item">
+        <img src="images/01.png" alt="WeightTrack history list" loading="lazy">
+      </div>
+      <div class="gallery-item">
+        <img src="images/03.png" alt="WeightTrack progress chart" loading="lazy">
+      </div>
+      <div class="gallery-item">
+        <img src="images/04.png" alt="WeightTrack add entry" loading="lazy">
+      </div>
+      <div class="gallery-item">
+        <img src="images/05.png" alt="WeightTrack settings BMI" loading="lazy">
+      </div>
+      <div class="gallery-item">
+        <img src="images/06.png" alt="WeightTrack Apple Health sync" loading="lazy">
+      </div>
+      <div class="gallery-item">
+        <img src="images/07.png" alt="WeightTrack profile setup" loading="lazy">
+      </div>
+      <div class="gallery-item">
+        <img src="images/08.png" alt="WeightTrack CSV import" loading="lazy">
+      </div>
+      <div class="gallery-item">
+        <img src="images/10.png" alt="WeightTrack light theme" loading="lazy">
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section">
+    <div class="cta-inner">
+      <div class="cta-app-icon">
+        <img src="images/180.png" alt="WeightTrack" style="width:100%;height:100%;display:block;object-fit:cover;">
+      </div>
+      <h2>Start tracking today.</h2>
+      <p>Free on the App Store. No subscription, no ads, no nonsense.</p>
+      <div class="cta-actions">
+        <!-- Replace href="#" with your App Store URL -->
+        <a href="#" class="appstore-btn" aria-label="Download WeightTrack on the App Store">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+          <span class="appstore-btn-text">
+            <small>Download on the</small>
+            <span>App Store</span>
+          </span>
+        </a>
+        <a href="support.html" class="btn btn-outline">Get Support</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <a href="index.html" class="footer-logo">
+      <svg width="36" height="36" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="goldFillWTF" x1="0" y1="0" x2="44" y2="44" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stop-color="#F5E070"/>
+            <stop offset="50%" stop-color="#D4AF37"/>
+            <stop offset="100%" stop-color="#8B6914"/>
+          </linearGradient>
+        </defs>
+        <circle cx="22" cy="22" r="21" fill="url(#goldFillWTF)"/>
+        <text x="22" y="29" text-anchor="middle" font-family="Georgia, serif" font-weight="bold" font-size="15" letter-spacing="1" fill="#1a0f00">MA</text>
+      </svg>
+      <span class="footer-logo-text">Misty Apps</span>
+    </a>
+    <div class="footer-links">
+      <a href="index.html">Home</a>
+      <a href="weighttrack.html">WeightTrack</a>
+      <a href="support.html">Support</a>
+      <a href="contact.html">Contact</a>
+      <a href="privacy-policy.html">Privacy Policy</a>
+    </div>
+    <p>Copyright &copy; 2026 Misty Apps &mdash; All Rights Reserved</p>
+  </footer>
+
+</body>
+</html>
