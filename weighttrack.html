@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>WeightTrack – Simple Weight Tracking with Style</title>
-  <meta name="description" content="WeightTrack: the beautiful, simple weight tracker for iPhone. BMI, goal weight, Apple Health sync, iCloud, dark mode and more.">
+  <meta name="description" content="WeightTrack: the beautiful weight tracker for iPhone. Calendar &amp; list views, BMI gauge, goals &amp; milestones, photo journal, voice entry, multi-profiles, Apple Health, iCloud and more.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Source+Sans+Pro:wght@300;400;700&family=Montserrat:wght@600;700&display=swap" rel="stylesheet">
@@ -571,6 +571,98 @@
       .stats-inner { flex-wrap: wrap; }
       .stat-item { flex: 1 1 50%; border-bottom: 1px solid var(--border); }
     }
+    /* ─── PRICING ─── */
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      max-width: 820px;
+      margin: 0 auto;
+    }
+    .pricing-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 2.5rem;
+      display: flex;
+      flex-direction: column;
+    }
+    .pricing-card-premium {
+      border-color: var(--border-gold);
+      box-shadow: 0 0 40px rgba(56,178,232,0.08);
+    }
+    .pricing-badge {
+      display: inline-block;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.6rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 0.25rem 0.75rem;
+      border-radius: 20px;
+      margin-bottom: 1rem;
+    }
+    .pricing-badge-free {
+      background: rgba(255,255,255,0.06);
+      color: var(--text-subtle);
+      border: 1px solid var(--border);
+    }
+    .pricing-badge-premium {
+      background: rgba(56,178,232,0.12);
+      color: var(--gold);
+      border: 1px solid var(--border-gold);
+    }
+    .pricing-card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem;
+      margin-bottom: 0.4rem;
+    }
+    .pricing-sub {
+      color: var(--text-subtle);
+      font-size: 0.9rem;
+      margin-bottom: 2rem;
+    }
+    .pricing-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.65rem;
+      flex: 1;
+    }
+    .pricing-list li {
+      font-size: 0.92rem;
+      padding-left: 1.6rem;
+      position: relative;
+      color: var(--text-muted);
+    }
+    .pricing-list li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 4px;
+      width: 16px;
+      height: 16px;
+      background-size: contain;
+      background-repeat: no-repeat;
+    }
+    .pricing-list li.included::before {
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 16 16' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='8' cy='8' r='7.5' stroke='%2335B0E0' stroke-opacity='0.5'/%3E%3Cpath d='M4.5 8L7 10.5L11.5 6' stroke='%2335B0E0' stroke-width='1.4' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    }
+    .pricing-list li.not-included {
+      color: var(--text-subtle);
+      opacity: 0.55;
+    }
+    .pricing-list li.not-included::before {
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 16 16' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='8' cy='8' r='7.5' stroke='%23555' stroke-opacity='0.5'/%3E%3Cpath d='M5.5 10.5L10.5 5.5M5.5 5.5L10.5 10.5' stroke='%23555' stroke-width='1.4' stroke-linecap='round'/%3E%3C/svg%3E");
+    }
+    .pricing-cta {
+      margin-top: 2rem;
+      display: block;
+      text-align: center;
+    }
+    @media (max-width: 620px) {
+      .pricing-grid { grid-template-columns: 1fr; }
+    }
     @media (max-width: 640px) {
       .features-grid-inner { grid-template-columns: 1fr; }
       .stat-item { flex: 1 1 100%; }
@@ -620,7 +712,7 @@
         <p class="eyebrow">WeightTrack for iPhone</p>
         <h1>Simple weight tracking, <em>with style.</em></h1>
         <div class="gold-line"></div>
-        <p>Log your weight, track your BMI, set a goal, and visualise your journey with beautiful charts — all in a clean, fast, no-fuss app.</p>
+        <p>Log your weight, track your BMI, and visualise your journey with beautiful charts. Choose list or calendar view, set goals and milestones, capture photos with entries, use voice input, and manage up to 5 profiles — all in one clean iPhone app.</p>
         <div class="hero-actions">
           <a href="https://apps.apple.com/au/app/weighttrack-log/id6753856510" class="appstore-btn" aria-label="Download WeightTrack on the App Store">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
@@ -637,7 +729,7 @@
       </div>
       <div class="hero-visual">
         <div class="hero-screens">
-          <img class="hero-screen" src="images/09.png" alt="WeightTrack dashboard" loading="eager">
+          <img class="hero-screen" src="images/01.png" alt="WeightTrack dashboard" loading="eager">
           <img class="hero-screen" src="images/03.png" alt="WeightTrack history chart" loading="eager">
         </div>
       </div>
@@ -660,12 +752,12 @@
         <div class="stat-label">Your units</div>
       </div>
       <div class="stat-item">
-        <div class="stat-value">Dark &amp; Light</div>
-        <div class="stat-label">Themes</div>
+        <div class="stat-value">5 Profiles</div>
+        <div class="stat-label">Premium — family tracking</div>
       </div>
       <div class="stat-item">
         <div class="stat-value">Premium</div>
-        <div class="stat-label">Remove ads &amp; unlock all</div>
+        <div class="stat-label">Voice, photos &amp; more</div>
       </div>
     </div>
   </div>
@@ -679,9 +771,9 @@
         <p>A beautiful interactive chart shows your weight history over days, weeks, months, or your entire lifetime — with your goal line always in view.</p>
         <ul class="feature-list">
           <li>Long-range history chart with scrollable timeline</li>
-          <li>Goal weight line displayed directly on the chart</li>
+          <li>Goal weight line and milestone markers on the chart</li>
           <li>Daily change indicators — instantly spot trends</li>
-          <li>BMI displayed alongside every entry</li>
+          <li>BMI gauge and calculator displayed on the main screen</li>
         </ul>
       </div>
       <div class="feature-screenshot">
@@ -700,17 +792,17 @@
       <div class="feature-text">
         <p class="eyebrow">Logging</p>
         <h2>Add an entry in seconds.</h2>
-        <p>The quick-entry interface is designed for speed — tap the date, adjust your weight with the stepper or type it in, add an optional note, and you're done.</p>
+        <p>The quick-entry interface is designed for speed — type your weight, or just tap the microphone and speak it. Attach a photo to document your progress visually.</p>
         <ul class="feature-list">
           <li>Tap +/- stepper or type your weight directly</li>
+          <li>Voice entry — speak your weight via the mic button (Premium)</li>
+          <li>Attach a photo to any weight entry (Premium)</li>
           <li>Optional notes for each entry (mood, meals, etc.)</li>
-          <li>Edit or delete any past entry at any time</li>
-          <li>Supports dates in the past for catch-up entries</li>
         </ul>
       </div>
       <div class="feature-screenshot">
         <img
-          src="images/04.png"
+          src="images/02.png"
           alt="WeightTrack add entry screen"
           loading="lazy"
         >
@@ -728,14 +820,14 @@
         <ul class="feature-list">
           <li>Accurate BMI calculated from your profile</li>
           <li>Goal weight progress shown on dashboard &amp; chart</li>
-          <li>Toggle daily change, BMI, and goal displays on or off</li>
+          <li>Up to 5 separate user profiles (Premium)</li>
           <li>Switch between Metric and Imperial at any time</li>
         </ul>
       </div>
       <div class="feature-screenshot">
         <img
-          src="images/05.png"
-          alt="WeightTrack settings and BMI"
+          src="images/04.png"
+          alt="WeightTrack BMI calculator"
           loading="lazy"
         >
       </div>
@@ -758,10 +850,90 @@
       </div>
       <div class="feature-screenshot">
         <img
-          src="images/06.png"
-          alt="WeightTrack Apple Health and iCloud settings"
+          src="images/08.png"
+          alt="WeightTrack Apple Health and iCloud"
           loading="lazy"
         >
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURE 5: List & Calendar Views -->
+  <section class="feature-row">
+    <div class="feature-row-inner">
+      <div class="feature-text">
+        <p class="eyebrow">Views</p>
+        <h2>Your history, your way.</h2>
+        <p>Toggle between a clean scrollable list view and an interactive calendar view — browse your entries in whichever layout you prefer.</p>
+        <ul class="feature-list">
+          <li>Calendar view highlights days you've logged at a glance</li>
+          <li>List view shows full entry details with swipe-to-edit actions</li>
+          <li>Tap any calendar date to jump straight to that entry</li>
+          <li>Available in both free and premium versions</li>
+        </ul>
+      </div>
+      <div class="feature-screenshot">
+        <img src="images/07.png" alt="WeightTrack calendar view" loading="lazy">
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURE 6: Goals & Milestones -->
+  <section class="feature-row feature-row-alt">
+    <div class="feature-row-inner reverse">
+      <div class="feature-text">
+        <p class="eyebrow">Premium — Goals</p>
+        <h2>Stay motivated with milestones.</h2>
+        <p>Set a target weight and let WeightTrack celebrate your progress — milestone markers keep you motivated every step of the way.</p>
+        <ul class="feature-list">
+          <li>Set a goal weight and track progress on the dashboard</li>
+          <li>Milestone markers displayed on your progress chart</li>
+          <li>Progress indicators keep you focused on the journey</li>
+          <li>Available exclusively in WeightTrack Premium</li>
+        </ul>
+      </div>
+      <div class="feature-screenshot">
+        <img src="images/05.png" alt="WeightTrack goals and milestones" loading="lazy">
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURE 7: Photo Journal (Premium) -->
+  <section class="feature-row">
+    <div class="feature-row-inner">
+      <div class="feature-text">
+        <p class="eyebrow">Premium — Photo Journal</p>
+        <h2>Capture your transformation.</h2>
+        <p>Take a photo each time you log your weight and watch your journey come alive in a beautiful timelapse photo journal — your progress, documented.</p>
+        <ul class="feature-list">
+          <li>Attach a photo to any weight entry with one tap</li>
+          <li>View all your photos in the dedicated photo journal</li>
+          <li>Timelapse view shows your visual transformation over time</li>
+          <li>Available exclusively in WeightTrack Premium</li>
+        </ul>
+      </div>
+      <div class="feature-screenshot">
+        <img src="images/02.png" alt="WeightTrack photo journal" loading="lazy">
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURE 8: Voice Entry & Multi-Profile (Premium) -->
+  <section class="feature-row feature-row-alt">
+    <div class="feature-row-inner reverse">
+      <div class="feature-text">
+        <p class="eyebrow">Premium — Voice &amp; Profiles</p>
+        <h2>Log with your voice. Track the whole family.</h2>
+        <p>Tap the microphone on the main screen to speak your weight instantly — no typing required. Create up to 5 separate profiles for the whole household.</p>
+        <ul class="feature-list">
+          <li>Voice entry — just say your weight and it's logged</li>
+          <li>Up to 5 individual user profiles</li>
+          <li>Each profile has its own history, goals, and BMI</li>
+          <li>Switch between profiles in seconds from the main screen</li>
+        </ul>
+      </div>
+      <div class="feature-screenshot">
+        <img src="images/06.png" alt="WeightTrack user profiles" loading="lazy">
       </div>
     </div>
   </section>
@@ -778,57 +950,91 @@
 
         <div class="feature-card">
           <div class="feature-card-icon">
-            <!-- BMI icon -->
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
               <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/>
-              <path d="M12 8v4l3 3"/>
+              <path d="M8 12h8M12 8v8"/>
             </svg>
           </div>
-          <h3>BMI Calculator</h3>
-          <p>Automatically calculated from your profile — displayed on every entry and the dashboard.</p>
+          <h3>BMI Gauge &amp; Calculator</h3>
+          <p>A visual BMI gauge on the main screen plus a dedicated BMI page showing weight ranges and your category.</p>
         </div>
 
         <div class="feature-card">
           <div class="feature-card-icon">
-            <!-- Goal icon -->
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="4" width="18" height="18" rx="2"/>
+              <path d="M16 2v4M8 2v4M3 10h18"/>
+              <circle cx="8" cy="15" r="1" fill="currentColor"/>
+              <circle cx="12" cy="15" r="1" fill="currentColor"/>
+              <circle cx="16" cy="15" r="1" fill="currentColor"/>
+            </svg>
+          </div>
+          <h3>List &amp; Calendar View</h3>
+          <p>Switch between a scrollable list and an interactive calendar to browse your weight history your way.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-card-icon">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
               <circle cx="12" cy="12" r="10"/>
               <circle cx="12" cy="12" r="6"/>
               <circle cx="12" cy="12" r="2"/>
             </svg>
           </div>
-          <h3>Goal Weight</h3>
-          <p>Set a target weight and track your distance from it on the dashboard and in your history chart.</p>
+          <h3>Goals &amp; Milestones <span style="font-size:0.6rem;color:var(--gold);font-family:'Montserrat',sans-serif;letter-spacing:1px;text-transform:uppercase;vertical-align:middle;margin-left:4px;border:1px solid var(--border-gold);padding:0.1rem 0.4rem;border-radius:10px;">Premium</span></h3>
+          <p>Set a target weight and celebrate progress milestones — tracked on your dashboard and history chart.</p>
         </div>
 
         <div class="feature-card">
           <div class="feature-card-icon">
-            <!-- Theme icon -->
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 2a3 3 0 0 0-3 3v4a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3z"/>
+              <path d="M19 10a7 7 0 0 1-14 0"/>
+              <line x1="12" y1="19" x2="12" y2="22"/>
+            </svg>
+          </div>
+          <h3>Voice Entry <span style="font-size:0.6rem;color:var(--gold);font-family:'Montserrat',sans-serif;letter-spacing:1px;text-transform:uppercase;vertical-align:middle;margin-left:4px;border:1px solid var(--border-gold);padding:0.1rem 0.4rem;border-radius:10px;">Premium</span></h3>
+          <p>Tap the mic on the main screen and speak your weight — logged instantly without typing a thing.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-card-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="3" width="18" height="18" rx="2"/>
+              <circle cx="8.5" cy="8.5" r="1.5"/>
+              <polyline points="21 15 16 10 5 21"/>
+            </svg>
+          </div>
+          <h3>Photo Journal <span style="font-size:0.6rem;color:var(--gold);font-family:'Montserrat',sans-serif;letter-spacing:1px;text-transform:uppercase;vertical-align:middle;margin-left:4px;border:1px solid var(--border-gold);padding:0.1rem 0.4rem;border-radius:10px;">Premium</span></h3>
+          <p>Attach a photo to each entry and watch your transformation as a timelapse in the photo journal.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-card-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+              <circle cx="9" cy="7" r="4"/>
+              <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+              <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+            </svg>
+          </div>
+          <h3>Multi-User Profiles <span style="font-size:0.6rem;color:var(--gold);font-family:'Montserrat',sans-serif;letter-spacing:1px;text-transform:uppercase;vertical-align:middle;margin-left:4px;border:1px solid var(--border-gold);padding:0.1rem 0.4rem;border-radius:10px;">Premium</span></h3>
+          <p>Create up to 5 separate user profiles — perfect for tracking the whole family or multiple goals.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-card-icon">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
               <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+              <circle cx="12" cy="12" r="2" fill="currentColor" stroke="none" opacity="0.4"/>
             </svg>
           </div>
-          <h3>Light &amp; Dark Theme</h3>
-          <p>A sleek dark mode and a crisp light mode — choose the one that suits you, or let iOS decide.</p>
+          <h3>Themes &amp; Color Accent</h3>
+          <p>Choose light or dark mode and personalise the primary color — classic blue or bold black &amp; white.</p>
         </div>
 
         <div class="feature-card">
           <div class="feature-card-icon">
-            <!-- Units icon -->
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M3 6h18M3 12h18M3 18h18"/>
-              <circle cx="7" cy="6" r="2" fill="currentColor" stroke="none" opacity="0.5"/>
-              <circle cx="17" cy="12" r="2" fill="currentColor" stroke="none" opacity="0.5"/>
-              <circle cx="10" cy="18" r="2" fill="currentColor" stroke="none" opacity="0.5"/>
-            </svg>
-          </div>
-          <h3>Metric &amp; Imperial</h3>
-          <p>Switch between kilograms and pounds at any time — all existing entries convert automatically.</p>
-        </div>
-
-        <div class="feature-card">
-          <div class="feature-card-icon">
-            <!-- Export icon -->
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
               <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
               <polyline points="17 8 12 3 7 8"/>
@@ -841,7 +1047,6 @@
 
         <div class="feature-card">
           <div class="feature-card-icon">
-            <!-- Apple Health icon -->
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
               <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
             </svg>
@@ -854,6 +1059,61 @@
     </div>
   </section>
 
+  <!-- FREE VS PREMIUM -->
+  <section class="section section-alt" id="pricing">
+    <div class="section-inner">
+      <div class="section-title">
+        <p class="eyebrow" style="justify-content:center;">Pricing</p>
+        <h2>Free &amp; Premium.</h2>
+        <div class="gold-line" style="margin: 1.5rem auto 0;"></div>
+        <p style="color:var(--text-subtle);max-width:520px;margin:1rem auto 0;">WeightTrack is free to download with a generous feature set. Upgrade to Premium to unlock voice entry, photo journal, multiple profiles, and go ad-free.</p>
+      </div>
+      <div class="pricing-grid">
+        <div class="pricing-card">
+          <div>
+            <div class="pricing-badge pricing-badge-free">Free</div>
+            <h3>WeightTrack</h3>
+            <p class="pricing-sub">Get started — no cost.</p>
+          </div>
+          <ul class="pricing-list">
+            <li class="included">Weight logging &amp; history</li>
+            <li class="included">BMI gauge on main screen</li>
+            <li class="included">BMI Calculator page with weight ranges</li>
+            <li class="included">List &amp; calendar view</li>
+            <li class="included">Apple Health sync</li>
+            <li class="included">iCloud backup</li>
+            <li class="included">CSV import &amp; export</li>
+            <li class="included">1 user profile</li>
+            <li class="included">Light &amp; dark theme</li>
+            <li class="included">Custom accent color</li>
+            <li class="not-included">Goals &amp; milestones</li>
+            <li class="not-included">Voice entry</li>
+            <li class="not-included">Photo journal &amp; timelapse</li>
+            <li class="not-included">Multi-user profiles (up to 5)</li>
+            <li class="not-included">Ad-free experience</li>
+          </ul>
+          <a href="https://apps.apple.com/au/app/weighttrack-log/id6753856510" class="btn btn-outline pricing-cta">Download Free</a>
+        </div>
+        <div class="pricing-card pricing-card-premium">
+          <div>
+            <div class="pricing-badge pricing-badge-premium">Premium</div>
+            <h3>WeightTrack Premium</h3>
+            <p class="pricing-sub">Unlock the full experience.</p>
+          </div>
+          <ul class="pricing-list">
+            <li class="included">Everything in Free</li>
+            <li class="included">Goals &amp; milestones</li>
+            <li class="included">Voice entry — log by speaking</li>
+            <li class="included">Photo journal with timelapse view</li>
+            <li class="included">Up to 5 user profiles</li>
+            <li class="included">Ad-free experience</li>
+          </ul>
+          <a href="https://apps.apple.com/au/app/weighttrack-log/id6753856510" class="btn btn-gold pricing-cta">Upgrade to Premium</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- SCREENSHOT GALLERY -->
   <section class="gallery-section section-alt">
     <div class="gallery-title">
@@ -862,25 +1122,31 @@
     </div>
     <div class="gallery-track">
       <div class="gallery-item">
-        <img src="images/01.png" alt="WeightTrack history list" loading="lazy">
+        <img src="images/01.png" alt="WeightTrack main dashboard" loading="lazy">
+      </div>
+      <div class="gallery-item">
+        <img src="images/02.png" alt="WeightTrack calendar view" loading="lazy">
       </div>
       <div class="gallery-item">
         <img src="images/03.png" alt="WeightTrack progress chart" loading="lazy">
       </div>
       <div class="gallery-item">
-        <img src="images/04.png" alt="WeightTrack add entry" loading="lazy">
+        <img src="images/04.png" alt="WeightTrack BMI calculator" loading="lazy">
       </div>
       <div class="gallery-item">
-        <img src="images/05.png" alt="WeightTrack settings BMI" loading="lazy">
+        <img src="images/05.png" alt="WeightTrack goals and milestones" loading="lazy">
       </div>
       <div class="gallery-item">
-        <img src="images/06.png" alt="WeightTrack Apple Health sync" loading="lazy">
+        <img src="images/06.png" alt="WeightTrack user profile switcher" loading="lazy">
       </div>
       <div class="gallery-item">
-        <img src="images/07.png" alt="WeightTrack profile setup" loading="lazy">
+        <img src="images/07.png" alt="WeightTrack calendar view" loading="lazy">
       </div>
       <div class="gallery-item">
-        <img src="images/08.png" alt="WeightTrack CSV import" loading="lazy">
+        <img src="images/08.png" alt="WeightTrack Apple Health and iCloud" loading="lazy">
+      </div>
+      <div class="gallery-item">
+        <img src="images/09.png" alt="WeightTrack CSV import" loading="lazy">
       </div>
       <div class="gallery-item">
         <img src="images/10.png" alt="WeightTrack light theme" loading="lazy">
@@ -895,7 +1161,7 @@
         <img src="images/180.png" alt="WeightTrack" style="width:100%;height:100%;display:block;object-fit:cover;">
       </div>
       <h2>Start tracking today.</h2>
-      <p>Free to download. Upgrade to Premium to remove ads and unlock the full experience.</p>
+      <p>Free to download with ads. Upgrade to Premium to unlock voice entry, photo journal, multiple profiles, and enjoy an ad-free experience.</p>
       <div class="cta-actions">
         <a href="https://apps.apple.com/au/app/weighttrack-log/id6753856510" class="appstore-btn" aria-label="Download WeightTrack on the App Store">
           <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
